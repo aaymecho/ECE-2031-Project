@@ -1,0 +1,25 @@
+-- Altera Memory Initialization File (MIF)
+
+DEPTH = 2048;
+WIDTH = 16;
+
+ADDRESS_RADIX = HEX;
+DATA_RADIX = HEX;
+
+CONTENT
+  BEGIN
+    [000..7FF] : 0000;  -- Default to NOP
+
+           000 : 9000;  -- 	IN     Switches
+           001 : 9840;  -- 	OUT    Beep
+           002 : 8004;  -- 	CALL   Delay
+           003 : 2800;  -- 	JUMP   0
+           004 : 9802;  -- 	OUT    Timer
+           005 : 9002;  -- 	IN     Timer
+           006 : 6FFE;  -- 	ADDI   -2
+           007 : 3005;  -- 	JNEG   WaitingLoop
+           008 : 8800;  -- 	RETURN
+           009 : 0000;  -- Pattern:   DW 0
+           00A : 0001;  -- Bit0:      DW &B0000000001
+           00B : 0200;  -- Bit9:      DW &B1000000000
+  END;
